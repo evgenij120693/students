@@ -29,7 +29,7 @@
         </c:forEach>
     </table>
 <a href="/students/add">Add student</a>
-
+<h2><a href="/students/logout">Exit</a></h2>
 
 </body>
 </html>

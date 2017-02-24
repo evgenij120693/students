@@ -12,5 +12,9 @@
   </head>
   <body>
   Welcom to party!!
+  <ul>
+    <li><a href="/students/login">Login</a> </li>
+    <li><a href="/students/registration">Registration</a> </li>
+  </ul>
   </body>
 </html>

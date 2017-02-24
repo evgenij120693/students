@@ -4,6 +4,27 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <filter>
+        <filter-name>RequestLoggingFilter</filter-name>
+        <filter-class>controllers.filters.RequestLoggingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>RequestLoggingFilter</filter-name> <!-- mandatory -->
+        <url-pattern>/*</url-pattern> <!-- either url-pattern or servlet-name is mandatory -->
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>controllers.filters.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/list</url-pattern>
+        <url-pattern>/add</url-pattern>
+        <url-pattern>/edit</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>controllers.LoginServlet</servlet-class>

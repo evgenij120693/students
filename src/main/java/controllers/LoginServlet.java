@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -30,12 +31,15 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         try {
             if (UserService.autorize(login, password)) {
+                HttpSession session = req.getSession();
+                session.setAttribute("id", "user_"+login);
+                session.setMaxInactiveInterval(30*60);
                 resp.sendRedirect("/students/list");
                 logger.trace("Authorization successfull");
             } else {
                 // req.getRequestDispatcher("/login.jsp").forward(req, resp);
                 logger.trace("Authorization unsuccessful");
-                resp.sendRedirect("/students/");
+                resp.sendRedirect("/students/login");
             }
         } catch (UserDaoException e) {
             logger.error(e);
